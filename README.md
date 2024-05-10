@@ -1,5 +1,4 @@
-# LVGL PlatformIO template for CYD variants
-This is a minimal example for using LVGL with a PlatformIO project on a CYD variant.
-![Example](img/cyd_128.png)
+# IMPROV with WiFiManager template
+This template combines [Improv-WiFi-Library](https://github.com/jnthas/Improv-WiFi-Library/) with the [WiFiManager](https://github.com/tzapu/WiFiManager) to combine easy wifi setup via Webflash with the flexible solution the WiFiManger provides.
 
-Choose the PlatformIO environment which fits your board - no other configuration required.
+Give it a try: [Demo Webflash](https://thenitek.github.io/Improv-Wifi-Manager/)
