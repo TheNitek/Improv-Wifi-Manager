@@ -41,10 +41,10 @@ jobs:
     - name: Merge flash files
       run: |
         find . -path '*/.pio*' -type f -name 'firmware.bin' -printf '%h\n' | xargs -i bash -c "(echo {}; cd {}; ~/.platformio/packages/tool-esptoolpy/esptool.py --chip esp32 merge_bin -o merged-flash.bin --flash_mode dio --flash_size 4MB 0x1000 bootloader.bin 0x8000 partitions.bin 0x10000 firmware.bin)"
+    - name: Copy firmware
+      run: |
         cp ./.pio/build/cyd2usb/merged-flash.bin ./.github/pages/cyd2usb.bin
         cp ./.pio/build/cyd/merged-flash.bin ./.github/pages/cyd.bin
-    - name: Copy firmware
-      run: cp ./.pio/build/latest.bin ./.github/pages/
     - name: Setup Github Page
       uses: actions/configure-pages@v4
     - name: Upload webflash files
