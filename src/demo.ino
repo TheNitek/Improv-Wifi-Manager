@@ -3,19 +3,10 @@
 #include <WiFiManager.h>
 #include <ImprovWiFiLibrary.h>
 
-void onImprovWiFiErrorCb(ImprovTypes::Error err) {
-}
-
-void onImprovWiFiConnectedCb(const char *ssid, const char *password) {
-}
-
 bool connectWifi(const char *ssid, const char *password) {
-  /*WiFi.begin(ssid, password);
-
-  while (!improvSerial.isConnected())
-  {
-    blink_led(500, 1);
-  }*/
+  WiFi.persistent(true);
+  WiFi.begin(ssid, password);
+  WiFi.persistent(false);
 
   return true;
 }
@@ -29,15 +20,16 @@ void setup() {
 
   ImprovWiFi improvSerial(&Serial);
 
-  improvSerial.setDeviceInfo(ImprovTypes::ChipFamily::CF_ESP32, "ImprovWiFiLib", "1.0.0", "ImprovWiFiManager", "http://{LOCAL_IPV4}?name=Guest");
-  improvSerial.onImprovError(onImprovWiFiErrorCb);
-  improvSerial.onImprovConnected(onImprovWiFiConnectedCb);
+  improvSerial.setDeviceInfo(ImprovTypes::ChipFamily::CF_ESP32, "ImprovWiFiLib", "1.0.0", "ImprovWiFiManager", "http://{LOCAL_IPV4}");
   improvSerial.setCustomConnectWiFi(connectWifi);
 
 
   if(!wm.autoConnect("demo", "demo4711")) {
     while(!wm.process()) {
       improvSerial.handleSerial();
+      if(improvSerial.isConnected()) {
+        wm.stopConfigPortal();
+      }
     }
   }
 
@@ -45,5 +37,6 @@ void setup() {
 }
 
 void loop() {   
-
+  Serial.println(WiFi.status());
+  delay(5000);
 }

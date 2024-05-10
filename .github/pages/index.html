@@ -3,7 +3,7 @@
 <head>
 	<title>Improv-Wifi-Manager Demo Web Installer</title>
 	<meta charset="utf-8">
-	<script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"></script>
+	<script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
 </head>
 <body>
     <h1>Improv-Wifi-Manager Demo Web Installer</h1>
@@ -11,11 +11,8 @@
     <p class="flashable">Make sure to close anything using your devices com port (e.g. Serial monitor). Just hit the button to install the firmware on your shelf.</p>
 	
 	<div id="webflash" style="display: none;" class="flashable">
-        <esp-web-install-button class="installButton" manifest="cyd-manifest.json">
-            <button slot="activate">Flash CYD Firmware</button>
-        </esp-web-install-button>
-        <esp-web-install-button class="installButton" manifest="cyd2usb-manifest.json">
-            <button slot="activate">Flash CYD2USB Firmware</button>
+        <esp-web-install-button class="installButton" manifest="manifest.json">
+            <button slot="activate">Flash Improv WiFiManager Demo Firmware</button>
         </esp-web-install-button>
 	</div>
 
